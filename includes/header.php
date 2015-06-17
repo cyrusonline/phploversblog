@@ -1,4 +1,6 @@
-
+<?php include 'config/config.php';?>
+<?php include 'libraries/Database.php'; ?>
+<?php include 'helpers/format_helper.php'?>
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -34,7 +36,7 @@
       <div class="container">
         <nav class="blog-nav">
           <a class="blog-nav-item active" href="index.php">Home</a>
-          <a class="blog-nav-item" href="posts.php">New features</a>
+          <a class="blog-nav-item" href="posts.php">All Posts</a>
          
         </nav>
       </div>
