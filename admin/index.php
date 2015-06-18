@@ -4,7 +4,7 @@
 $db = new DataBase ();
 
 // Create Query
-$query = "SELECT * FROM posts
+$query = "SELECT posts.*, categories.name FROM posts
 		INNER JOIN categories 
 		ON posts.category = categories.id";
 
