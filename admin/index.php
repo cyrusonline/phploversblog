@@ -1,20 +1,45 @@
 <?php include 'includes/header.php';?>
+<?php
+// Create DB Object
+$db = new DataBase ();
+
+// Create Query
+$query = "SELECT * FROM posts
+		INNER JOIN categories 
+		ON posts.category = categories.id";
+
+// Run Query
+$posts = $db->select ( $query );
+
+?>
+
 
 <table class="table table-striped">
+
+
 <tr>
+
 	<th>Post ID#</th>
 	<th>Post Title</th>
 	<th>Category</th>
 	<th>Author</th>
 	<th>Date</th>
+	
+	
 </tr>
+<?php if($posts):?>
+<?php while($row = $posts->fetch_assoc()):?>
 <tr>
-	<td></td>
-	<td></td>
-	<td></td>
-	<td></td>
-	<td></td>
+	<td><?php echo $row['id']?></td>
+	<td><a href="edit_post.php?id=<?php echo $row['id']?>"><?php echo $row['title']?></a></td>
+	<td><?php echo $row['name']?></td>
+	<td><?php echo $row['author']?></td>
+	<td><?php echo formatDate($row['date'])?></td>
 </tr>
+<?php endwhile;?>
+<?php else:?>
+<p>There are no posts yet</p>
+<?php endif;?>
 </table>
 
 <table class="table table-striped">
