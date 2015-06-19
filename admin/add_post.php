@@ -1,15 +1,21 @@
 <?php include 'includes/header.php';?>
 <?php 
+
+// Create DB Object
+$db = new DataBase ();
+
 if(isset($_POST['submit'])){
-	die('The submit button was pressed');
+	$title = mysqli_real_escape_string($db->link, $_POST['title']);
+	$body = mysqli_real_escape_string($db->link, $_POST['body']);
+	$category = mysqli_real_escape_string($db->link, $_POST['category']);
+	$author = mysqli_real_escape_string($db->link, $_POST['author']);
+	$tags = mysqli_real_escape_string($db->link, $_POST['tags']);
+		
 }
 
 ?>
 <?php 
 
-
-// Create DB Object
-$db = new DataBase ();
 
 // create query
 $query = "SELECT * FROM categories";
