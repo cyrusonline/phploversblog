@@ -1,4 +1,10 @@
 <?php include 'includes/header.php';?>
+<?php 
+if(isset($_POST['submit'])){
+	die('The submit button was pressed');
+}
+
+?>
 <form role="form" method="post" action="add_post.php">
   <div class="form-group">
     <label>Post Titles</label>

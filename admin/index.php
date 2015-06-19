@@ -2,15 +2,12 @@
 <?php
 // Create DB Object
 $db = new DataBase ();
-
 // Create Query
 $query = "SELECT posts.*, categories.name FROM posts
 		INNER JOIN categories 
 		ON posts.category = categories.id";
-
 // Run Query
 $posts = $db->select ( $query );
-
 ?>
 
 
@@ -27,7 +24,7 @@ $posts = $db->select ( $query );
 	
 	
 </tr>
-<?php if($posts):?>
+
 <?php while($row = $posts->fetch_assoc()):?>
 <tr>
 	<td><?php echo $row['id']?></td>
@@ -37,11 +34,17 @@ $posts = $db->select ( $query );
 	<td><?php echo formatDate($row['date'])?></td>
 </tr>
 <?php endwhile;?>
-<?php else:?>
-<p>There are no posts yet</p>
-<?php endif;?>
+
 </table>
 
+
+
+<?php 
+// Create Query
+$query = "SELECT* FROM categories";
+// Run Query
+$posts = $db->select ( $query );
+?>
 <table class="table table-striped">
 <tr>
 	<th>Category ID#</th>
@@ -55,4 +58,3 @@ $posts = $db->select ( $query );
 </table>
 
 <?php include 'includes/footer.php';?>
-
