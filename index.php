@@ -1,6 +1,8 @@
 <?php include 'includes/header.php'; ?>
 
 <?php
+//This is new
+
 // Create DB Object
 $db = new DataBase ();
 
