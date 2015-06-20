@@ -8,6 +8,11 @@ $query = "SELECT posts.*, categories.name FROM posts
 		ON posts.category = categories.id";
 // Run Query
 $posts = $db->select ( $query );
+
+// Create Query
+$query = "SELECT* FROM categories";
+// Run Query
+$categories = $db->select ( $query );
 ?>
 
 
@@ -39,17 +44,21 @@ $posts = $db->select ( $query );
 
 
 
-<?php 
-// Create Query
-$query = "SELECT* FROM categories";
-// Run Query
-$posts = $db->select ( $query );
-?>
 <table class="table table-striped">
 <tr>
+
 	<th>Category ID#</th>
-	<th>Category Name</th>
+	<th>Name</th>
+		
 </tr>
+<?php while($row = $categories->fetch_assoc()):?>
+
+
+<tr>
+	<th><?php echo $row['id'];?></th>
+	<th><a href="edit_category.php?id=<?php echo $row['id']?>"><?php echo $row['name'];?></a></th>
+</tr>
+<?php endwhile;?>
 <tr>
 	<td></td>
 	<td></td>
