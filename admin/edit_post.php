@@ -18,8 +18,58 @@ $query = "SELECT * FROM categories";
 $categories = $db->select ( $query );
 
 ?>
+<?php 
 
-<form role="form" method="post" action="edit_post.php">
+// Create DB Object
+$db = new DataBase ();
+
+if(isset($_POST['submit'])){
+	$title = mysqli_real_escape_string($db->link, $_POST['title']);
+	$body = mysqli_real_escape_string($db->link, $_POST['body']);
+	$category = mysqli_real_escape_string($db->link, $_POST['category']);
+	$author = mysqli_real_escape_string($db->link, $_POST['author']);
+	$tags = mysqli_real_escape_string($db->link, $_POST['tags']);
+	//Simple validation
+	if ($title == ''||$body == ''||$category == ''||$author==''){
+		//Set error
+		$error = 'Please fill out all required field';
+		
+	}else {
+		
+		$query = "UPDATE posts
+		SET
+		title = '$title',
+		body = '$body',
+		category = '$category',
+		author = '$author',
+		tags = '$tags'
+		WHERE id =".$id;
+				
+	
+		$update_row = $db->update($query);		
+			
+			
+		
+				}
+		
+		
+}
+
+?>
+
+
+<?php 
+
+if(isset($_POST['delete'])){
+	
+	$query = "DELETE FROM posts
+WHERE id=".$id;	
+	
+	$delete_row = $db->delete($query);
+}
+
+?>
+<form role="form" method="post" action="edit_post.php?id=<?php echo $id;?>">
   <div class="form-group">
     <label>Post Titles</label>
     <input name="title" type="text" class="form-control" placeholder="Enter Title" value="<?php echo $post['title'];?>">
@@ -40,7 +90,7 @@ $categories = $db->select ( $query );
     	}
     
     ?>
-	  <option <?php echo $selected;?>><?php echo $row['name']?></option>
+	  <option <?php echo $selected;?> value="<?php echo $row['id']?>"><?php echo $row['name']?></option>
 	<?php endwhile;?>
 	
 </select>
@@ -56,7 +106,7 @@ $categories = $db->select ( $query );
   <div>
   <input name="submit" type="submit" class="btn btn-default" value="Submit"/>
 	<a href="index.php" class="btn btn-default">Cancel</a>
-	  <input name="submit" type="submit" class="btn btn-danger" value="Delete"/>
+	  <input name="delete" type="submit" class="btn btn-danger" value="Delete"/>
 	</div>
 	<br>
   </form>

@@ -1,6 +1,7 @@
 <?php include '../config/config.php';?>
 <?php include '../libraries/Database.php'; ?>
 <?php include '../helpers/format_helper.php'?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -55,3 +56,11 @@
 		<div class="row">
 
 			<div class="col-sm-12 blog-main">
+			
+			
+<?php if (isset($_GET['msg'])):?>
+			
+			<div class="alert alert-success"><?php echo htmlentities($_GET['msg']); ?> </div>
+			<?php endif;?>			
+			
+			
